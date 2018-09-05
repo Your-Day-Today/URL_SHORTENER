@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Сервис сокращения ссылок</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <nav class="navbar navbar-default">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <a class="navbar-brand" href="#">Сервис по сокращению ссылок</a>
+            </div>
+            <ul class="nav navbar-nav">
+               <li><a href="/">Сервис</a></li>
+               <li class="active"><a href="/documentation.html">Документация</a></li>
+            </ul>
+         </div>
+      </nav>
+   </head>
+   <body>
+      <div class="container">
+         <div class="jumbotron">
+            <h1 style="text-align: center">Документация</h1>
+         </div>
+         <div class="jumbotron">
+            <p>Данный сервис предназначен для создания сокращённых ссылок веб сайтов. Сокращённые ссылку функционируют так-же, как и оригинальные, но позволяют существенно сократить место при размещении в публикациях.&nbsp;</p>
+            <p>Данный сервис функционирует следующим образом:</p>
+            <p>1. Вводимая пользователем ссылка сохраняется в базе данных под уникальным идентификатором.</p>
+            <p>2. Идентификатор используется для создания сокращённой ссылки.</p>
+            <p>3. Сокращённая ссылка передаётся пользователю.</p>
+            <p>4. Каждый раз, когда кто-либо переходит по сокращённой ссылке, сервер получает запрос и воссаздаёт уникальный идентификатор по сокращённой ссылке. По идентификатору возвращается оригинальная ссылка и пользователь переадресуется по оригинальной ссылке.</p>
+            <h4 style="text-align: center;">Принцип работы</h4>
+            <p>Данный сервис написан на <a href="https://www.python.org">Python</a> и использует модули <a href="http://flask.pocoo.org">Flask</a> и <a href="https://www.sqlite.org/index.html">SQlite3</a> для работы с веб интерфейсом и базой данных соответственно.&nbsp;</p>
+            <p>Основой сервиса является механизм кодирования двоичных данных при помощи 64 символов -&nbsp;<a href="https://ru.wikipedia.org/wiki/Base64">Base64</a>. В частности используются комбинации символов&nbsp;[a-z][A-Z][0-9]. Данный механизм реализован в виде двух функций: кодирования и декодирования. Python поддерживает работу с Base64 по средствам дополнительного <a href="https://docs.python.org/3/library/base64.html">модуля</a>.</p>
+            <p>Данный <a href="https://docs.python.org/3/library/base64.html">модуль</a> используется для преобразования оригинальной ссылки пользователя в строку символов, которая в последствии записывается в базу данных. Паралельно происходит присвоение индекса записи. Данный индекс кодируется в формат Base64 и используется для формирования сокращённой ссылки. Ссылка передаётся пользователю через веб интерфейс.</p>
+            <p>Каждый раз, когда происходит переход по сокращённой ссылке, происходит обратный процесс. Алгоритм получает сокращённую ссылку, декодирует Base64 в десятичное число индекса. По индексу возвращается закодированная версия оригинальной ссылки из базы данных. Пользователь переадресуется по оригинальной декодированной ссылке.</p>
+            <p style="text-align: left;">&nbsp;При разработки сервиса частично использовался материал из блога&nbsp;<a href="http://localhost:5000/1L">NAREN ARYA</a>.</p>
+         </div>
+         <footer>
+            <p class="text-muted" style="text-align: center">Created by Vladimir Zhukov</p>
+         </footer>
+      </div>
+   </body>
+</html>

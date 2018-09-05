@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Сервис сокращения ссылок</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <nav class="navbar navbar-default">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <a class="navbar-brand" href="#">Сервис по сокращению ссылок</a>
+            </div>
+            <ul class="nav navbar-nav">
+               <li class="active"><a href="/">Сервис</a></li>
+               <li><a href="/documentation.html">Документация</a></li>
+            </ul>
+         </div>
+      </nav>
+   </head>
+   <body>
+      <div class="container">
+         <div class="jumbotron">
+            <h1 style="text-align: center">Сервис по сокращению ссылок</h1>
+         </div>
+         <div class="jumbotron">
+            <div class="container">
+               {% if not short_url %}
+                  <p style="text-align: center">Введите ссылку для сокращения</p>
+                  <br />
+                  <div class="container-fluid">
+                     <div class="row">
+                        <form method="post" action="">
+                           <div class="form-group">
+                              <input type="text" id="url" name="url" class="form-control input-lg chat-input" placeholder="URL" />
+                              <div class="col-md-12 text-center">
+                                 <br>
+                                 <button type="submit" class="btn btn-lg btn-info">Сократить</button>
+                              </div>
+                           </div>
+                        </form>
+                     </div>
+                  </div>
+                  <div class="row">
+                     <div class="col-md-offset-5 col-md-7">
+                        <!-- <h4>Ссылка для сокращения</h4> -->
+                     </div>
+                  </div>
+               {% else %}
+                  <p style="text-align: center">Ваша сокращённая ссылка</p>
+                  <br />
+                  <div>
+                     <center><a href="{{short_url}}" style="font-size: 33px; text-decoration: none"  > {{short_url}}</a></center>
+                  </div>
+                  <br>
+                  <div class="col-md-12 text-center">
+                     <form action="/" method="get">
+                        <button type="submit" class="btn btn-lg btn-info">Вернуться</button>
+                        <!--   <input type="submit" value="Go to my link location" name="Submit" id="frm1_submit" /> -->
+                     </form>
+                  </div>
+               {% endif %}
+            </div>
+         </div>
+         <footer>
+            <p class="text-muted" style="text-align: center">Created by Vladimir Zhukov</p>
+         </footer>
+      </div>
+   </body>
+</html>
